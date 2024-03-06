@@ -28,7 +28,7 @@ class FizzBuzzTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,4,8,11,13,16,17,19,22,23,26,29,31,32,34,37,38,41,43,46,47,49,52,53,58,59,61,62,64,67,68,71,73,74,76,79,82,83,86,89,92,94,97,98})
+    @ValueSource(ints = {1,2,4,8,11,13,16,17,19,22,23,26,29,31,32,34,37,38,41,43,46,47,52,53,58,59,61,62,64,67,68,71,73,74,76,79,82,83,86,89,92,94,97})
     void NumberForOtherCases(int number) {
         assertEquals(String.valueOf(number), FizzBuzz.fizzBuzz(number));
     }
