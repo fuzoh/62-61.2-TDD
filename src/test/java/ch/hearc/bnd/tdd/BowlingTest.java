@@ -1,5 +1,6 @@
 package ch.hearc.bnd.tdd;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
@@ -8,9 +9,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BowlingTest {
 
+    private Bowling bowling;
+
+    @BeforeEach
+    void setUp() {
+        bowling = new Bowling();
+    }
+
     @Test
     void Roll_GivenZeroPins_ShouldBeZero() {
-        Bowling bowling = new Bowling();
         IntStream
                 .range(0, 20)
                 .forEach(i -> bowling.roll(0));
@@ -19,7 +26,6 @@ class BowlingTest {
 
     @Test
     void Roll_GivenOnePin_ShouldBeTwenty() {
-        Bowling bowling = new Bowling();
         IntStream
                 .range(0, 20)
                 .forEach(i -> bowling.roll(1));
@@ -28,7 +34,6 @@ class BowlingTest {
 
     @Test
     void Roll_GivenSpareOfFivePlusFive_ShouldBeSixteen() {
-        Bowling bowling = new Bowling();
         bowling.roll(5);
         bowling.roll(5); // Spare
         bowling.roll(3);
@@ -37,7 +42,6 @@ class BowlingTest {
 
     @Test
     void Roll_GivenStrikePlusThreePlusFour_ShouldBeTwentyFour() {
-        Bowling bowling = new Bowling();
         bowling.roll(10); // Strike
         bowling.roll(3);
         bowling.roll(4);
@@ -46,7 +50,6 @@ class BowlingTest {
 
     @Test
     void Roll_GivenPerfectGame_ShouldBeThreeHundred() {
-        Bowling bowling = new Bowling();
         IntStream
                 .range(0, 12)
                 .forEach(i -> bowling.roll(10));
