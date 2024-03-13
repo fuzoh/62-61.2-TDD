@@ -1,9 +1,10 @@
 package ch.hearc.bnd.tdd;
 
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,5 +44,10 @@ class FizzBuzzTest {
     @ValueSource(ints = {66,666,6666})
     void FizzBuzzFor66Number(int number) {
         assertEquals("FizzBuzz", FizzBuzz.fizzBuzz(number));
+    }
+
+    @Test
+    void FizzBuzzList() {
+        assertEquals(List.of("Fizz", "11", "12", "13", "Buzz"), FizzBuzz.fizzBuzzList(10, 5));
     }
 }
