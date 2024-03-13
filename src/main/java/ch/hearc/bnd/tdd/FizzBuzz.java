@@ -1,5 +1,8 @@
 package ch.hearc.bnd.tdd;
 
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class FizzBuzz {
     public static String fizzBuzz(int number) {
         if (number <= 0) {
@@ -18,5 +21,11 @@ public class FizzBuzz {
             return "Buzz";
         }
         return String.valueOf(number);
+    }
+
+    public static List<String> fizzBuzzList(int start, int quantity) {
+        return IntStream.range(start, start + quantity)
+                .mapToObj(FizzBuzz::fizzBuzz)
+                .toList();
     }
 }
