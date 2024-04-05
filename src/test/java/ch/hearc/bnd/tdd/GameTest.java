@@ -19,7 +19,7 @@ class GameTest {
 
     @Test
     void new_GivenGameCreation_ShouldConnectToDisplay() {
-        verify(display, times(1));
+        verify(display, times(1)).seConnecter();
     }
 
 }
