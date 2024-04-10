@@ -3,6 +3,7 @@ package ch.hearc.bnd.tdd;
 import ch.hearc.bnd.tdd.bowling.Frame;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Bowling {
 
@@ -69,5 +70,12 @@ public class Bowling {
         }
 
         return score;
+    }
+
+    public void endGame() {
+        var scores = display.bestScores();
+        if (score() > scores.stream().mapToInt(Integer::intValue).max().orElse(0)) {
+            display.updateBestScores(score());
+        }
     }
 }
