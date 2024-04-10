@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class BowlingTest {
 
@@ -13,7 +14,8 @@ class BowlingTest {
 
     @BeforeEach
     void setUp() {
-        bowling = new Bowling();
+        var display = mock(TableauAffichage.class);
+        bowling = new Bowling(display);
     }
 
     @Test

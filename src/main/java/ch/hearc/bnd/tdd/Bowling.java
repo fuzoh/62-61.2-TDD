@@ -8,6 +8,13 @@ public class Bowling {
 
     private List<Frame> frames = new ArrayList<>();
 
+    private TableauAffichage display;
+
+    public Bowling(TableauAffichage display) {
+        this.display = display;
+        this.display.seConnecter();
+    }
+
     public void roll(int pin) {
         try {
             frames.getLast().roll(pin);
@@ -32,6 +39,10 @@ public class Bowling {
         return getFrameFromIndex(index).map(Frame::firstRoll).orElse(0);
     }
 
+    private int getStrikesCount() {
+        return (int) frames.stream().filter(Frame::isStrike).count();
+    }
+
     public int score() {
         var score = 0;
         for (var frame : frames) {
@@ -40,6 +51,7 @@ public class Bowling {
             }
             if (frame.isSpare()) {
                 score += frame.score() + getFrameFirstRollFromIndex(frames.indexOf(frame) + 1);
+                display.showSpare();
             } else if (frame.isStrike()) {
                 if (getFrameFromIndex(frames.indexOf(frame) + 1).map(Frame::isStrike).orElse(false)) {
                     score += frame.score() + getFrameScoreFromIndex(frames.indexOf(frame) + 1) + getFrameFirstRollFromIndex(frames.indexOf(frame) + 2);
@@ -50,6 +62,12 @@ public class Bowling {
                 score += frame.score();
             }
         }
+
+        // Strikes display
+        if (getStrikesCount() == 1) {
+            display.showStrike(TableauAffichage.StrikeSerie.PREMIER);
+        }
+
         return score;
     }
 }
